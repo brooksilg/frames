@@ -1,0 +1,109 @@
+[
+  {
+    "name": "White Frame — Vertical 4×5",
+    "imageCount": 1,
+    "orientation": "vertical",
+    "canvas": { "width": 3200, "height": 4000 },
+    "background": "#ffffff",
+    "images": [
+      {
+        "resizeLargestSide": 3900,
+        "border": null,
+        "position": "center"
+      }
+    ]
+  },
+  {
+    "name": "White Frame — Horizontal 5×4",
+    "imageCount": 1,
+    "orientation": "horizontal",
+    "canvas": { "width": 4000, "height": 3200 },
+    "background": "#ffffff",
+    "images": [
+      {
+        "resizeLargestSide": 3900,
+        "position": "center"
+      }
+    ]
+  },
+  {
+    "name": "White Frame + Black Border — Vertical 4×5",
+    "imageCount": 1,
+    "orientation": "vertical",
+    "canvas": { "width": 3200, "height": 4000 },
+    "background": "#ffffff",
+    "images": [
+      {
+        "resizeLargestSide": 3880,
+        "border": { "width": 10, "color": "#000000" },
+        "position": "center"
+      }
+    ]
+  },
+  {
+    "name": "White Frame + Black Border — Horizontal 5×4",
+    "imageCount": 1,
+    "orientation": "horizontal",
+    "canvas": { "width": 4000, "height": 3200 },
+    "background": "#ffffff",
+    "images": [
+      {
+        "resizeLargestSide": 3880,
+        "border": { "width": 10, "color": "#000000" },
+        "position": "center"
+      }
+    ]
+  },
+  {
+    "name": "White Frame — Diptych Vertical 4×5",
+    "imageCount": 2,
+    "orientation": "any",
+    "canvas": { "width": 3200, "height": 4000 },
+    "background": "#ffffff",
+    "layout": "stacked",
+    "gap": 40,
+    "images": [
+      {
+        "resizeTo": "fit",
+        "maxWidth": 3000,
+        "maxHeight": 1940,
+        "border": null,
+        "position": "center-top"
+      },
+      {
+        "resizeTo": "fit",
+        "maxWidth": 3000,
+        "maxHeight": 1940,
+        "border": null,
+        "position": "center-bottom"
+      }
+    ]
+  },
+  {
+    "name": "Square White Frame — 1×1",
+    "imageCount": 1,
+    "orientation": "any",
+    "canvas": { "width": 4000, "height": 4000 },
+    "background": "#ffffff",
+    "images": [
+      {
+        "resizeLargestSide": 3900,
+        "position": "center"
+      }
+    ]
+  },
+  {
+    "name": "Square White Frame + Black Border — 1×1",
+    "imageCount": 1,
+    "orientation": "any",
+    "canvas": { "width": 4000, "height": 4000 },
+    "background": "#ffffff",
+    "images": [
+      {
+        "resizeLargestSide": 3880,
+        "border": { "width": 10, "color": "#000000" },
+        "position": "center"
+      }
+    ]
+  }
+]

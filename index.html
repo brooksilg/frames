@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frames — Photo Layout Tool</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+
+  <h1>FRAMES</h1>
+
+  <div class="layout">
+    <div class="panel panel-left">
+      <div class="drop-zone" id="dropZone">
+        <p>Drop photos here</p>
+        <p class="hint">or click to browse — then click thumbnails to select</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+      <div class="thumbs-header">
+        <button class="clear-all" id="clearAllBtn" style="display:none">Clear all</button>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+
+    <div class="panel panel-right">
+      <div class="controls">
+        <select id="templateSelect">
+          <option value="">— Select a template —</option>
+        </select>
+        <button class="primary" id="downloadBtn" disabled>Download</button>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="preview-container">
+        <canvas id="preview"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
