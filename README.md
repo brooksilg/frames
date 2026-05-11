@@ -2,6 +2,8 @@
 
 A browser-based tool for generating framed photo layouts for social media. Stage as many photos as you want, pick a template, select which images to use, see a live preview, and download a full-resolution PNG.
 
+**Live site:** https://brooksilg.github.io/frames/
+
 ## Quick Start
 
 Serve the project directory over HTTP (required for `fetch` to load templates):
@@ -139,12 +141,9 @@ An array of template objects. Each template defines:
 | White Frame — Horizontal 5×4 | 1 landscape | 4000×3200 | |
 | White Frame + Black Border — Vertical 4×5 | 1 portrait | 3200×4000 | 10px black border |
 | White Frame + Black Border — Horizontal 5×4 | 1 landscape | 4000×3200 | 10px black border |
-| Black Frame — Vertical 4×5 | 1 portrait | 3200×4000 | |
-| Black Frame — Horizontal 5×4 | 1 landscape | 4000×3200 | |
+| White Frame — Diptych Vertical 4×5 | 2 | 3200×4000 | Stacked |
 | Square White Frame — 1×1 | 1 any | 4000×4000 | |
 | Square White Frame + Black Border — 1×1 | 1 any | 4000×4000 | 10px black border |
-| White Frame — Diptych Vertical 4×5 | 2 | 3200×4000 | Stacked |
-| White Frame — Diptych Horizontal 5×4 | 2 | 4000×3200 | Side-by-side |
 
 ## Adding a Template
 
