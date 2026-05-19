@@ -101,7 +101,12 @@ An array of template objects. Each template defines:
   },
   "background": "#ffffff",      // any CSS color
 
-  // For single-image templates:
+  // For auto-canvas templates (padding-based, any aspect ratio):
+  "canvasMode": "auto",        // canvas sized from image + padding
+  "paddingPercent": 2.5,       // padding = 2.5% of longest side, applied equally on all sides
+
+  // For fixed-canvas single-image templates:
+  "canvas": { "width": 3200, "height": 4000 },
   "images": [
     {
       "resizeLargestSide": 3800, // scale so the largest dimension equals this
@@ -137,6 +142,8 @@ An array of template objects. Each template defines:
 
 | Template | Images | Canvas | Notes |
 |---|---|---|---|
+| White Frame — Any Ratio | 1 any | auto | 2.5% padding from longest side |
+| White Frame + Black Border — Any Ratio | 1 any | auto | 2.5% padding + 10px black border |
 | White Frame — Vertical 4×5 | 1 portrait | 3200×4000 | |
 | White Frame — Horizontal 5×4 | 1 landscape | 4000×3200 | |
 | White Frame + Black Border — Vertical 4×5 | 1 portrait | 3200×4000 | 10px black border |

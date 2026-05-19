@@ -342,12 +342,27 @@ function render() {
       let orient;
       if (t.imageCount >= 2) {
         orient = (t.layout === 'stacked') ? 'horizontal' : 'vertical';
+      } else if (t.canvasMode === 'auto') {
+        orient = 'vertical'; // default placeholder for auto-canvas
       } else {
         orient = t.canvas.height > t.canvas.width ? 'vertical' :
                  t.canvas.width > t.canvas.height ? 'horizontal' : 'vertical';
       }
       slots.push(placeholderSize(orient));
     }
+  }
+
+  // Resolve canvas size — fixed or auto
+  let canvasW, canvasH;
+  if (t.canvasMode === 'auto' && t.imageCount === 1) {
+    const item = slots[0];
+    const longest = Math.max(item.width, item.height);
+    const pad = Math.round(longest * (t.paddingPercent / 100));
+    canvasW = item.width + pad * 2;
+    canvasH = item.height + pad * 2;
+  } else {
+    canvasW = t.canvas.width;
+    canvasH = t.canvas.height;
   }
 
   // Validate orientation for single-image templates (only if slot is filled)
@@ -368,15 +383,17 @@ function render() {
   }
 
   // Set up canvas at full resolution
-  canvas.width = t.canvas.width;
-  canvas.height = t.canvas.height;
+  canvas.width = canvasW;
+  canvas.height = canvasH;
   canvas.style.display = 'block';
 
   // Background
   ctx.fillStyle = t.background;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, canvasW, canvasH);
 
-  if (t.imageCount === 1) {
+  if (t.canvasMode === 'auto' && t.imageCount === 1) {
+    renderAutoSingleImage(t, slots[0], canvasW, canvasH);
+  } else if (t.imageCount === 1) {
     renderSingleImage(t, slots[0]);
   } else if (t.imageCount === 2) {
     renderDiptych(t, slots);
@@ -384,7 +401,7 @@ function render() {
 
   if (allFilled) {
     dlBtn.disabled = false;
-    setStatus(`Preview: ${t.canvas.width}×${t.canvas.height}px`);
+    setStatus(`Preview: ${canvasW}×${canvasH}px`);
   } else {
     setStatus(`Select ${t.imageCount - selected.length} more image(s)`);
   }
@@ -425,6 +442,18 @@ function renderSingleImage(t, item) {
   const drawY = Math.round((t.canvas.height - h) / 2);
 
   drawSlot(item, drawX, drawY, w, h, rule);
+}
+
+// ── Auto-canvas single image (padding-based) ───────
+function renderAutoSingleImage(t, item, canvasW, canvasH) {
+  const rule = t.images ? t.images[0] : {};
+  // Image is drawn at native size; padding is baked into canvasW/canvasH
+  const drawW = item.width;
+  const drawH = item.height;
+  const drawX = Math.round((canvasW - drawW) / 2);
+  const drawY = Math.round((canvasH - drawH) / 2);
+
+  drawSlot(item, drawX, drawY, drawW, drawH, rule);
 }
 
 // ── Diptych (2 images) ───────────────────────────────

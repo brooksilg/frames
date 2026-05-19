@@ -1,5 +1,32 @@
 [
   {
+    "name": "White Frame — Any Ratio",
+    "imageCount": 1,
+    "orientation": "any",
+    "canvasMode": "auto",
+    "paddingPercent": 2.5,
+    "background": "#ffffff",
+    "images": [
+      {
+        "position": "center"
+      }
+    ]
+  },
+  {
+    "name": "White Frame + Black Border — Any Ratio",
+    "imageCount": 1,
+    "orientation": "any",
+    "canvasMode": "auto",
+    "paddingPercent": 2.5,
+    "background": "#ffffff",
+    "images": [
+      {
+        "border": { "width": 10, "color": "#000000" },
+        "position": "center"
+      }
+    ]
+  },
+  {
     "name": "White Frame — Vertical 4×5",
     "imageCount": 1,
     "orientation": "vertical",
