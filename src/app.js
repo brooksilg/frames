@@ -501,13 +501,34 @@ function renderDiptych(t, slots) {
 }
 
 // ── Download ──────────────────────────────────────────
+function stripExtension(filename) {
+  return filename ? filename.replace(/\.[^.]+$/, '') : '';
+}
+
+function buildDownloadName() {
+  const selected = getSelectedItems();
+  const t = currentTemplate;
+  if (!t || selected.length === 0) return 'frame.png';
+
+  if (t.imageCount >= 2 && selected.length >= 2) {
+    // Diptych: name1--name2--diptych.png
+    const names = selected.slice(0, 2).map(item =>
+      stripExtension(item.name || item.file?.name || 'image')
+    );
+    return `${names[0]}--${names[1]}--diptych.png`;
+  } else {
+    // Single: name--frame.png
+    const name = stripExtension(selected[0].name || selected[0].file?.name || 'image');
+    return `${name}--frame.png`;
+  }
+}
+
 document.getElementById('downloadBtn').addEventListener('click', () => {
   if (!currentTemplate) return;
   canvas.toBlob(blob => {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    const safeName = currentTemplate.name.replace(/[^a-zA-Z0-9]+/g, '_').toLowerCase();
-    a.download = `frame_${safeName}.png`;
+    a.download = buildDownloadName();
     a.click();
     URL.revokeObjectURL(a.href);
   }, 'image/png');
