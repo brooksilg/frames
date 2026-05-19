@@ -348,7 +348,7 @@ function render() {
       if (t.imageCount >= 2) {
         orient = (t.layout === 'stacked') ? 'horizontal' : 'vertical';
       } else if (t.canvasMode === 'auto') {
-        orient = 'vertical';
+        orient = 'horizontal';
       } else {
         orient = t.canvas.height > t.canvas.width ? 'vertical' :
                  t.canvas.width > t.canvas.height ? 'horizontal' : 'vertical';
