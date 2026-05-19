@@ -311,7 +311,12 @@ function getSelectedItems() {
 }
 
 // ── Placeholder dimensions (2:3 or 3:2 depending on orientation) ──
-function placeholderSize(orientation) {
+function placeholderSize(orientation, useFullSize) {
+  // useFullSize: generate realistic pixel dimensions for auto-canvas templates
+  if (useFullSize) {
+    if (orientation === 'horizontal') return { width: 3600, height: 2400, _placeholder: true };
+    return { width: 2400, height: 3600, _placeholder: true };
+  }
   if (orientation === 'horizontal') return { width: 3, height: 2, _placeholder: true };
   return { width: 2, height: 3, _placeholder: true };
 }
@@ -343,12 +348,12 @@ function render() {
       if (t.imageCount >= 2) {
         orient = (t.layout === 'stacked') ? 'horizontal' : 'vertical';
       } else if (t.canvasMode === 'auto') {
-        orient = 'vertical'; // default placeholder for auto-canvas
+        orient = 'vertical';
       } else {
         orient = t.canvas.height > t.canvas.width ? 'vertical' :
                  t.canvas.width > t.canvas.height ? 'horizontal' : 'vertical';
       }
-      slots.push(placeholderSize(orient));
+      slots.push(placeholderSize(orient, t.canvasMode === 'auto'));
     }
   }
 
